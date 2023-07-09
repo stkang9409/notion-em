@@ -1,8 +1,8 @@
 // get startDate from query string
 const queryStringObj = new URLSearchParams(location.search);
-const startDate =
-  new Date(queryStringObj.get("startDate")) ||
-  new Date(document.getElementById("month").dataset.start);
+const startDate = queryStringObj.get("startDate")
+  ? new Date(queryStringObj.get("startDate"))
+  : new Date(document.getElementById("month").dataset.start);
 const today = new Date();
 const year = today.getFullYear();
 const month = today.getMonth() + 1;
