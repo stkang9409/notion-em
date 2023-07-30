@@ -2,12 +2,18 @@ const getKoreanDate = (date) => {
   const timezoneOffset = date.getTimezoneOffset() * 60 * 1000;
   return new Date(date.getTime() + timezoneOffset + 9 * 60 * 60 * 1000);
 };
+
+const getLocalDate = (date) => {
+  const timezoneOffset = date.getTimezoneOffset() * 60 * 1000;
+  return new Date(date.getTime() + timezoneOffset);
+};
 // get startDate from query string
 const queryStringObj = new URLSearchParams(location.search);
 const startDate = queryStringObj.get("startDate")
-  ? getKoreanDate(new Date(queryStringObj.get("startDate")))
+  ? getLocalDate(new Date(queryStringObj.get("startDate")))
   : new Date(document.getElementById("month").dataset.start);
 const today = getKoreanDate(new Date());
+console.log("!!!", startDate, today);
 const year = today.getFullYear();
 const month = today.getMonth() + 1;
 const date = today.getDate();
